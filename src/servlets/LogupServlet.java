@@ -17,6 +17,10 @@ public class LogupServlet extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         String repassword=request.getParameter("repassword");
+        String phone=request.getParameter("phone");
+        String cellphone=request.getParameter("cellphone");
+        String address=request.getParameter("address");
+        String email=request.getParameter("email");
         //连接数据库，进行用户匹配
         Connection conn=null;
         try{
