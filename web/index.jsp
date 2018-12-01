@@ -16,7 +16,7 @@
     <link href="css/style.css" rel="stylesheet"/>
     <title>网上书店</title>
   </head>
-  <body>
+  <body onload="initAJAX()">
   <div class="header">
     <div class="container">
       <div class="row">
@@ -47,20 +47,33 @@
   <div class="row"><%--下方左右div控制--%>
     <div class="col-md-3"><%--左侧菜单div控制--%>
       <ul class="nav nav-list">
-        <li class="navbar-header">书籍类型</li>
+        <li class="navbar-header">书籍类型</li><br/>
         <%
-//            Class.forName("com.mysql.jdbc.Driver");
-//            String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
-//            Connection conn = DriverManager.getConnection(url, "root", "Home7End1");
-//            String sql="";
-//            Statement stat=conn.createStatement();
-//            ResultSet rs=stat.executeQuery(sql);
-
+            Class.forName("com.mysql.jdbc.Driver");
+            String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
+            Connection conn = DriverManager.getConnection(url, "root", "Home7End1");
+            String sql="select * from category;";
+            Statement stat=conn.createStatement();
+            ResultSet rs=stat.executeQuery(sql);
+            while(rs.next())
+            {
         %>
+          <li>
+              <a href='javascript:showBook("<%=rs.getString("id")%>")'><%=rs.getString("name")%></a>
+          </li>
+          <%
+              }
+              stat.close();
+              conn.close();
+          %>
       </ul>
-    </div>
+    </div><%--左侧菜单div控制--%>
+      <div class="col-md-9" id="book"> <%--书籍布局控制--%>
 
-  </div>
+      </div>
+  </div><%--下方左右div控制--%>
+
+
   <div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,7 +84,21 @@
     </div>
   </div>
 
-
+  <%--ajax方法实现异步获取--%>
+  <script language="JavaScript">
+      function showBook(categoryID) {
+          xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState == 4) {
+                  if(xmlHttp.status == 200) {
+                      var data = xmlHttp.responseText;
+                      document.getElementById("book").innerHTML = data;
+                  }
+              }
+          }
+          xmlHttp.open("GET", "getBook.jsp?id="+categoryID, true);
+          xmlHttp.send();
+      }
+  </script>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/commons.js"></script>
