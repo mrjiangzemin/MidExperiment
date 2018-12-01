@@ -18,7 +18,7 @@
 <%
     Class.forName("com.mysql.jdbc.Driver");
     String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
-    Connection conn = DriverManager.getConnection(url, "root", "Home7End1");
+    Connection conn = DriverManager.getConnection(url, "root", "123456");
     String sql = "select * from book" +
             " where category_id = ?";
     String categoryID = request.getParameter("id");

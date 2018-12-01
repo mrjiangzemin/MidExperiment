@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
-            conn = DriverManager.getConnection(url, "root", "Home7End1");
+            conn = DriverManager.getConnection(url, "root", "123456");
             String sql="select username from user where username= \'"+username+"' and password= \'"+password+"';";
             Statement stat=conn.createStatement();
             ResultSet rs=stat.executeQuery(sql);

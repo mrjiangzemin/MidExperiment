@@ -34,8 +34,8 @@
             <% if(session.getAttribute("username")==null){%>
           <a class="login" href="login.html" rel="tooltip" data-placement="bottom"
            data-toggle="modal" data-target="#myModal"></a>
-          <a class="register" href="logup.html" rel="tooltip" data-placement="bottom"
-           data-toggle="modal" data-target="#myModal"></a>
+          <a class="register" href="newlogup.html" rel="tooltip" data-placement="bottom"
+             data-toggle="modal" data-target="#myModal"></a>
             <%}else{%>
             <a class="logout" href="logout.html" rel="tooltip" data-placement="bottom"
                data-toggle="modal" data-target="#myModal"></a>
@@ -51,7 +51,7 @@
         <%
             Class.forName("com.mysql.jdbc.Driver");
             String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
-            Connection conn = DriverManager.getConnection(url, "root", "Home7End1");
+            Connection conn = DriverManager.getConnection(url, "root", "123456");
             String sql="select * from category;";
             Statement stat=conn.createStatement();
             ResultSet rs=stat.executeQuery(sql);
