@@ -10,6 +10,7 @@
 <%@page import="java.sql.Statement" %>
 <%@page import="java.sql.ResultSet" %>
 <%@page import="java.sql.DriverManager" %>
+
 <html>
   <head>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -35,7 +36,7 @@
           <a class="login" href="login.html" rel="tooltip" data-placement="bottom"
            data-toggle="modal" data-target="#myModal"></a>
           <a class="register" href="newlogup.html" rel="tooltip" data-placement="bottom"
-             data-toggle="modal" data-target="#myModal"></a>
+             data-toggle="modal" data-target="#myModal1"></a>
             <%}else{%>
             <a class="logout" href="logout.html" rel="tooltip" data-placement="bottom"
                data-toggle="modal" data-target="#myModal"></a>
@@ -50,7 +51,8 @@
         <li class="navbar-header">书籍类型</li><br/>
         <%
             Class.forName("com.mysql.jdbc.Driver");
-            String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
+//            String url="jdbc:mysql://localhost:3306/bookstore?useSSL=false";
+            String url="jdbc:mysql://127.0.0.1:3306/bookstore?user=root&password=123456&useUnicode=true&characterEncoding=UTF8&useSSL=false";
             Connection conn = DriverManager.getConnection(url, "root", "123456");
             String sql="select * from category;";
             Statement stat=conn.createStatement();
@@ -82,6 +84,16 @@
         <div class="modal-footer"></div>
       </div>
     </div>
+  </div>
+
+  <div class="modal fade" id="myModal1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header"></div>
+              <div class="modal-body"></div>
+              <div class="modal-footer"></div>
+          </div>
+      </div>
   </div>
 
   <%--ajax方法实现异步获取--%>
